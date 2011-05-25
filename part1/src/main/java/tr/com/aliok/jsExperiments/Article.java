@@ -17,9 +17,7 @@
 package tr.com.aliok.jsExperiments;
 
 /**
- * User: Ali Ok (ali.ok@innflow.com)
- * Date: 2011-05-22
- * Time: 4:22 PM
+ * @author Ali Ok (aliok@apache.org)
  */
 public enum Article {
     DER("der"),

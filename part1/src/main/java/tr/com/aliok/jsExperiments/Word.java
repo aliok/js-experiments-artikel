@@ -19,9 +19,7 @@ package tr.com.aliok.jsExperiments;
 import java.io.Serializable;
 
 /**
- * User: Ali Ok (ali.ok@innflow.com)
- * Date: 2011-05-22
- * Time: 4:24 PM
+ * @author Ali Ok (aliok@apache.org)
  */
 public class Word implements Serializable{
     private final String word;

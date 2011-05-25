@@ -23,9 +23,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * User: Ali Ok (ali.ok@innflow.com)
- * Date: 2011-05-22
- * Time: 4:21 PM
+ * @author Ali Ok (aliok@apache.org)
  */
 public class WordController implements Serializable{
 

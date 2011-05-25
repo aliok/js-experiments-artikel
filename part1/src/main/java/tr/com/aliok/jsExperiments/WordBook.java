@@ -21,9 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * User: Ali Ok (ali.ok@innflow.com)
- * Date: 2011-05-23
- * Time: 2:06 PM
+ * @author Ali Ok (aliok@apache.org)
  */
 public class WordBook implements Serializable{
 
