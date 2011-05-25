@@ -43,31 +43,34 @@ The application is a simple German "artikel" learning application.
 == Branches ==
 
 {| border="1" align="center" width="100%"
-|[http://github.com/aliok/js-experiments/tree/part1 Part1]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part1 Part1]
 |App written completely in JSF and totally server-side
 |-
-|[http://github.com/aliok/js-experiments/tree/part2 Part2]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part2 Part2]
 |Converting to a Javascript client, using Servlets for web services
 |-
-|[http://github.com/aliok/js-experiments/tree/part3 Part3]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part3 Part3]
 |Using local storage for caching the wordbook on modern browsers, using REST (used Apache CXF) for web services
 |-
-|[http://github.com/aliok/js-experiments/tree/part4 Part4]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part4 Part4]
 |Using WebSqlDatabase for caching the wordbook
 |-
-|[http://github.com/aliok/js-experiments/tree/part5 Part5]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part5 Part5]
 |Writing some mock tests and optimizing the code for unit tests
 |-
-|[http://github.com/aliok/js-experiments/tree/part6 Part6]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part6 Part6]
 |Writing integration tests
 |-
-|[http://github.com/aliok/js-experiments/tree/part7 Part7]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part7 Part7]
 |Running the Javascript unit tests within Maven
 |-
-|[http://github.com/aliok/js-experiments/tree/part8 Part8]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part8 Part8]
+|I18N and L10N
+|-
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part9 Part9]
 |Embedding the application in a Android WebView
 |-
-|[http://github.com/aliok/js-experiments/tree/part9 Part9]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part10 Part10]
 |Bundling the application with PhoneGap
 |}
 
