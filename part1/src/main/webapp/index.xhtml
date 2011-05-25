@@ -1,0 +1,97 @@
+<!--
+  ~ Copyright [2011] [Ali Ok - aliok@apache.org]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<f:view contentType="text/html">
+    <h:head>
+        <title>#{text['application.name']}</title>
+
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+        <!--Used as the homescreen icon on IOS-->
+        <link rel="apple-touch-icon" href="/resources/img/iosHomeScreenIcon.png"/>
+        <!--Used as the splash image on IOS when the app is opened from the home screen-->
+        <link rel="apple-touch-startup-image" href="/resources/img/iosStartupImage.png" />
+
+        <h:outputStylesheet library="css/thirdparty" name="jquery.mobile-1.0a4.1.css"/>
+
+        <h:outputScript library="js/thirdparty" name="jquery-1.5.js"/>
+
+        <h:outputScript library="js/thirdparty" name="jquery.mobile-1.0a4.1.js"/>
+
+        <style>
+            .correct {
+                color:#006400;
+            }
+            .wrong{
+                color:red;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <div data-role="page">
+            <div data-role="header">
+                <h1>#{text['application.name']}</h1>
+            </div>
+
+            <div data-role="content" style="text-align: center;">
+                <h:form>
+                    <h4><h:outputText value="#{text['score']} : #{wordController.score}"/></h4>
+                    <h2>
+                        <h:outputText value="#{wordController.currentWord.article.text} " rendered="#{wordController.answered}"
+                                      styleClass="#{wordController.lastAnswerWasCorrect ? 'correct' : 'wrong'}"/>
+                        <h:outputText value="#{wordController.currentWord.word}"/>
+                    </h2>
+                    <h4><h:outputText value="#{wordController.currentWord.translation}" rendered="#{wordController.answered}"/></h4>
+                    <h:panelGroup rendered="#{not wordController.answered}">
+                        <div class="ui-grid-b">
+                            <div class="ui-block-a">
+                                <h:commandButton actionListener="#{wordController.der}" value="#{text['der']}">
+                                    <f:ajax render="@all" execute="@this" event="click" />
+                                </h:commandButton>
+                            </div>
+                            <div class="ui-block-b">
+                                <h:commandButton actionListener="#{wordController.die}" value="#{text['die']}">
+                                    <f:ajax render="@all" execute="@this" event="click" />
+                                </h:commandButton>
+                            </div>
+                            <div class="ui-block-c">
+                                <h:commandButton actionListener="#{wordController.das}" value="#{text['das']}">
+                                    <f:ajax render="@all" execute="@this" event="click" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:commandButton actionListener="#{wordController.nextWord}" value="#{text['next']}" rendered="#{wordController.answered}">
+                            <f:ajax render="@all" execute="@this" event="click" />
+                        </h:commandButton>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+
+    </h:body>
+</f:view>
+</html>
