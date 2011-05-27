@@ -14,35 +14,32 @@
  *    limitations under the License.
  */
 
-package tr.com.aliok.jsExperiments.model;
+package tr.com.aliok.jsExperiments.service;
 
-import tr.com.aliok.jsExperiments.service.ArticleAdapter;
+import tr.com.aliok.jsExperiments.model.Article;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
+ * This class is for used while converting the Article enum to String.
+ * If this is missing, Article enum is converted by the name, not the text
  * @author Ali Ok (aliok@apache.org)
  */
-@XmlEnum
-@XmlJavaTypeAdapter(ArticleAdapter.class)
-public enum Article {
-    DER("der"),
-    DIE("die"),
-    DAS("das");
+public class ArticleAdapter extends XmlAdapter<String, Article> {
 
-    private final String text;
+    @Override
+    public Article unmarshal(String v) throws Exception {
+        for (Article article : Article.values()) {
+            if (article.getText().equals(v))
+                return article;
+        }
 
-    Article(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
-        return text;
+        return null;
     }
 
     @Override
-    public String toString() {
-        return text;
+    public String marshal(Article v) throws Exception {
+        return v.getText();
     }
+
 }

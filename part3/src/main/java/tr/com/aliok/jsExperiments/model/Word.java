@@ -17,12 +17,14 @@
 package tr.com.aliok.jsExperiments.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 
 /**
  * @author Ali Ok (aliok@apache.org)
  */
 @XmlRootElement(name = "word")
+@XmlSeeAlso({Article.class})
 public class Word implements Serializable {
 
     private String word;
