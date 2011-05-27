@@ -22,11 +22,15 @@ import java.io.Serializable;
 /**
  * @author Ali Ok (aliok@apache.org)
  */
-@XmlRootElement(name = "Word")
-public class Word implements Serializable{
-    private final String word;
-    private final String translation;
-    private final Article article;
+@XmlRootElement(name = "word")
+public class Word implements Serializable {
+
+    private String word;
+    private String translation;
+    private Article article;
+
+    private Word() {
+    }
 
     public Word(String word, String translation, Article article) {
         this.word = word;
@@ -46,6 +50,18 @@ public class Word implements Serializable{
         return article;
     }
 
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,17 +70,17 @@ public class Word implements Serializable{
         Word word1 = (Word) o;
 
         if (article != word1.article) return false;
-        if (!translation.equals(word1.translation)) return false;
-        if (!word.equals(word1.word)) return false;
+        if (translation != null ? !translation.equals(word1.translation) : word1.translation != null) return false;
+        if (word != null ? !word.equals(word1.word) : word1.word != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = word.hashCode();
-        result = 31 * result + translation.hashCode();
-        result = 31 * result + article.hashCode();
+        int result = word != null ? word.hashCode() : 0;
+        result = 31 * result + (translation != null ? translation.hashCode() : 0);
+        result = 31 * result + (article != null ? article.hashCode() : 0);
         return result;
     }
 }
