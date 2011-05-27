@@ -35,7 +35,13 @@
 
     <script src="/resources/js/thirdparty/jquery.mobile-1.0a4.1.js"></script>
 
-    <script src="/resources/js/mine/application.js"></script>
+    <script src="/resources/js/mine/config/context.js"></script>
+    <script src="/resources/js/mine/config/applicationBeanFactory.js"></script>
+
+    <script src="/resources/js/mine/view/appView.js"></script>
+    <script src="/resources/js/mine/manager/wordManager.js"></script>
+    <script src="/resources/js/mine/controller/appController.js"></script>
+
 
     <style>
         .correct {
@@ -55,7 +61,7 @@
     </div>
 
     <div data-role="content" style="text-align: center;">
-        <h4>Score : <span id="score"/></h4>
+        <h4>Score : <span id="score"></span></h4>
 
             <h2>
                 <span id="article"></span>
@@ -82,9 +88,11 @@
     </div>
 </div>
 <script>
-    $(document).bind('pagecreate', function(){
-        new artikelApp.Controller();
-    });
+    new function(){
+        var appView = new artikelApp.AppView();
+        var appController = new artikelApp.AppController(appView, applicationBeanFactory.getWordManager());
+        appController.start();
+    }();
 </script>
 </body>
 </html>
