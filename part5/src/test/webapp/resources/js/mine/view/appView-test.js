@@ -24,14 +24,21 @@ AppViewTest.prototype.setUp = function() {
     jc = createJackContext();
 
     appView = new artikelApp.AppView();
+
+    /*:DOC += <div id="answers"></div>*/
+    /*:DOC += <div id="nextWordContainer"></div>*/
+
+    /*:DOC += <div id="article">old article</div>*/
+    /*:DOC += <div id="translation">old translation</div>*/
+    /*:DOC += <div id="word">old word</div>*/
+
+    /*:DOC += <button id="answerDer"></button>*/
+    /*:DOC += <button id="answerDie"></button>*/
+    /*:DOC += <button id="answerDas"></button>*/
+    /*:DOC += <button id="nextWord"></button>*/
 };
 
 AppViewTest.prototype.testAppViewShouldShowResult = function() {
-
-    /*:DOC += <div id="answers"></div>*/
-    /*:DOC += <div id="article"></div>*/
-    /*:DOC += <div id="translation"></div>*/
-    /*:DOC += <div id="nextWordContainer"></div>*/
 
     appView.showResult();
 
@@ -43,11 +50,6 @@ AppViewTest.prototype.testAppViewShouldShowResult = function() {
 
 AppViewTest.prototype.testAppViewShouldShowChoices = function() {
 
-    /*:DOC += <div id="answers"></div>*/
-    /*:DOC += <div id="article"></div>*/
-    /*:DOC += <div id="translation"></div>*/
-    /*:DOC += <div id="nextWordContainer"></div>*/
-
     appView.showChoices();
 
     assertTrue ('Answers must be shown',  $('div#answers').is(":visible"));
@@ -57,8 +59,6 @@ AppViewTest.prototype.testAppViewShouldShowChoices = function() {
 };
 
 AppViewTest.prototype.testAppViewShouldSetArticleColor = function() {
-
-    /*:DOC += <div id="article"></div>*/
 
     appView.setArticleColor(true);
     assertEquals('Correct answer class must be set',  $('div#article').attr('class'), 'correct');
@@ -87,8 +87,6 @@ AppViewTest.prototype.testAppViewShouldRegisterPageCreateHandler = function() {
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDerButtonHandler = function() {
 
-    /*:DOC += <button id="answerDer"></button>*/
-
     var callbackCalled = false;
 
     var callback = function(){
@@ -104,8 +102,6 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDerButtonHandler = function
 
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDieButtonHandler = function() {
-
-    /*:DOC += <button id="answerDie"></button>*/
 
     var callbackCalled = false;
 
@@ -123,8 +119,6 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDieButtonHandler = function
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDasButtonHandler = function() {
 
-    /*:DOC += <button id="answerDas"></button>*/
-
     var callbackCalled = false;
 
     var callback = function(){
@@ -140,8 +134,6 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDasButtonHandler = function
 
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterNextButtonHandler = function() {
-
-    /*:DOC += <button id="nextWord"></button>*/
 
     var callbackCalled = false;
 
@@ -159,39 +151,31 @@ AppViewTest.prototype.testAppViewShouldRegisterNextButtonHandler = function() {
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldSetWord = function() {
 
-    /*:DOC += <span id="word">old word</span>*/
-
     appView.setWord('new word');
 
-    assertEquals('Word must be set on UI', $('span#word').html(), 'new word');
+    assertEquals('Word must be set on UI', $('#word').html(), 'new word');
 };
 
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldSetTranslation = function() {
 
-    /*:DOC += <span id="translation">old translation</span>*/
-
     appView.setTranslation('new translation');
 
-    assertEquals('Translation must be set on UI', $('span#translation').html(), 'new translation');
+    assertEquals('Translation must be set on UI', $('#translation').html(), 'new translation');
 };
 
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldSetArticle = function() {
 
-    /*:DOC += <span id="article">old article</span>*/
-
     appView.setArticle('new article');
 
-    assertEquals('Article must be set on UI', $('span#article').html(), 'new article');
+    assertEquals('Article must be set on UI', $('#article').html(), 'new article');
 };
 
 //normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldSetScore = function() {
 
-    /*:DOC += <span id="word">old word</span>*/
-
     appView.setWord('new word');
 
-    assertEquals('Word must be set on UI', $('span#word').html(), 'new word');
+    assertEquals('Word must be set on UI', $('#word').html(), 'new word');
 };
