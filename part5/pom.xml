@@ -86,7 +86,7 @@
                                     <goal>test</goal>
                                 </goals>
                                 <configuration>
-                                    <browser>chromium-browser</browser>
+                                    <browser>chromium-browser, /usr/bin/firefox</browser>
                                     <port>10000</port>
                                     <basePath>${project.basedir}</basePath>
                                 </configuration>
