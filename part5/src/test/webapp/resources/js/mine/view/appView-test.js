@@ -26,6 +26,49 @@ AppViewTest.prototype.setUp = function() {
     appView = new artikelApp.AppView();
 };
 
+AppViewTest.prototype.testAppViewShouldShowResult = function() {
+
+    /*:DOC += <div id="answers"></div>*/
+    /*:DOC += <div id="article"></div>*/
+    /*:DOC += <div id="translation"></div>*/
+    /*:DOC += <div id="nextWordContainer"></div>*/
+
+    appView.showResult();
+
+    assertFalse('Answers must be hidden', $('div#answers').is(":visible"));
+    assertTrue ('Article must be shown',  $('div#article').is(":visible"));
+    assertTrue ('Answers must be shown', $('div#translation').is(":visible"));
+    assertTrue ('Answers must be shown', $('div#nextWordContainer').is(":visible"));
+};
+
+AppViewTest.prototype.testAppViewShouldShowChoices = function() {
+
+    /*:DOC += <div id="answers"></div>*/
+    /*:DOC += <div id="article"></div>*/
+    /*:DOC += <div id="translation"></div>*/
+    /*:DOC += <div id="nextWordContainer"></div>*/
+
+    appView.showChoices();
+
+    assertTrue ('Answers must be shown',  $('div#answers').is(":visible"));
+    assertFalse('Article must be hidden', $('div#article').is(":visible"));
+    assertFalse('Answers must be hidden', $('div#translation').is(":visible"));
+    assertFalse('Answers must be hidden', $('div#nextWordContainer').is(":visible"));
+};
+
+AppViewTest.prototype.testAppViewShouldSetArticleColor = function() {
+
+    /*:DOC += <div id="article"></div>*/
+
+    appView.setArticleColor(true);
+    assertEquals('Correct answer class must be set',  $('div#article').attr('class'), 'correct');
+
+    appView.setArticleColor(false);
+    assertEquals('Wrong answer class must be set',  $('div#article').attr('class'), 'wrong');
+
+};
+
+//normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterPageCreateHandler = function() {
 
     var callbackCalled = false;
@@ -38,9 +81,10 @@ AppViewTest.prototype.testAppViewShouldRegisterPageCreateHandler = function() {
 
     $(document).trigger('pagecreate');
 
-    assertTrue('Page create handler is called', callbackCalled);
+    assertTrue('Page create handler must be called', callbackCalled);
 };
 
+//normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDerButtonHandler = function() {
 
     /*:DOC += <button id="answerDer"></button>*/
@@ -55,9 +99,10 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDerButtonHandler = function
 
     $('#answerDer').trigger('click');
 
-    assertTrue('AnswerDer button click handler is called', callbackCalled);
+    assertTrue('AnswerDer button click handler must be called', callbackCalled);
 };
 
+//normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDieButtonHandler = function() {
 
     /*:DOC += <button id="answerDie"></button>*/
@@ -72,9 +117,10 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDieButtonHandler = function
 
     $('#answerDie').trigger('click');
 
-    assertTrue('AnswerDie button click handler is called', callbackCalled);
+    assertTrue('AnswerDie button click handler must be called', callbackCalled);
 };
 
+//normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldRegisterAnswerDasButtonHandler = function() {
 
     /*:DOC += <button id="answerDas"></button>*/
@@ -89,14 +135,63 @@ AppViewTest.prototype.testAppViewShouldRegisterAnswerDasButtonHandler = function
 
     $('#answerDas').trigger('click');
 
-    assertTrue('AnswerDas button click handler is called', callbackCalled);
+    assertTrue('AnswerDas button click handler must be called', callbackCalled);
 };
 
+//normally, this test is not necessary. only written for demonstration
+AppViewTest.prototype.testAppViewShouldRegisterNextButtonHandler = function() {
+
+    /*:DOC += <button id="nextWord"></button>*/
+
+    var callbackCalled = false;
+
+    var callback = function(){
+        callbackCalled = true;
+    };
+
+    appView.registerNextWordButtonHandler(callback);
+
+    $('#nextWord').trigger('click');
+
+    assertTrue('Next button click handler must be called', callbackCalled);
+};
+
+//normally, this test is not necessary. only written for demonstration
+AppViewTest.prototype.testAppViewShouldSetWord = function() {
+
+    /*:DOC += <span id="word">old word</span>*/
+
+    appView.setWord('new word');
+
+    assertEquals('Word must be set on UI', $('span#word').html(), 'new word');
+};
+
+//normally, this test is not necessary. only written for demonstration
+AppViewTest.prototype.testAppViewShouldSetTranslation = function() {
+
+    /*:DOC += <span id="translation">old translation</span>*/
+
+    appView.setTranslation('new translation');
+
+    assertEquals('Translation must be set on UI', $('span#translation').html(), 'new translation');
+};
+
+//normally, this test is not necessary. only written for demonstration
+AppViewTest.prototype.testAppViewShouldSetArticle = function() {
+
+    /*:DOC += <span id="article">old article</span>*/
+
+    appView.setArticle('new article');
+
+    assertEquals('Article must be set on UI', $('span#article').html(), 'new article');
+};
+
+//normally, this test is not necessary. only written for demonstration
 AppViewTest.prototype.testAppViewShouldSetScore = function() {
 
-    /*:DOC += <span id="score">999</span>*/
+    /*:DOC += <span id="word">old word</span>*/
 
-    appView.setScore(10);
+    appView.setWord('new word');
 
-    assertEquals('Score must be set on UI', $('span#score').html(), '10');
+    assertEquals('Word must be set on UI', $('span#word').html(), 'new word');
 };
