@@ -58,29 +58,32 @@ The application is a simple German "artikel" learning application.
 |[https://github.com/aliok/js-experiments-artikel/tree/master/part5 Part5]
 |Writing view tests
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part7 Part7]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part6 Part6]
 |Using local storage for caching the wordbook on modern browsers
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part8 Part8]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part7 Part7]
 |Using WebSqlDatabase for caching the wordbook on modern browsers
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part9 Part9]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part8 Part8]
 |I18N and L10N
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part10 Part10]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part9 Part9]
 |Using offline cache for resources, making the application support running offline
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part11 Part11]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part10 Part10]
 |Embedding the application in a Android WebView
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part12 Part12]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part11 Part11]
 |Bundling the application with PhoneGap
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part13 Part13]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part12 Part12]
 |Preparing for production and distribution
 |-
-|[https://github.com/aliok/js-experiments-artikel/tree/master/part14 Part14]
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part13 Part13]
 |Integrating the JS unit tests with continuous build systems
+|-
+|[https://github.com/aliok/js-experiments-artikel/tree/master/part14 Part14]
+|Measuring Javascript code coverage with JsTestDriver
 |}
 
 
