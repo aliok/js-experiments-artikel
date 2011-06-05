@@ -23,7 +23,7 @@ import java.io.Serializable;
 /**
  * @author Ali Ok (aliok@apache.org)
  */
-@XmlRootElement(name = "word")
+@XmlRootElement(name = "words")
 @XmlSeeAlso({Article.class})
 public class Word implements Serializable {
 

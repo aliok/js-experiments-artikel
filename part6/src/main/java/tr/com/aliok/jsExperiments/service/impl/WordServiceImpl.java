@@ -25,8 +25,10 @@ import tr.com.aliok.jsExperiments.service.WordService;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Ali Ok (aliok@apache.org)
@@ -43,6 +45,11 @@ public class WordServiceImpl implements WordService {
     @Override
     public Word getNextWord() {
         return getShuffledWords().pop();
+    }
+
+    @Override
+    public List<Word> getWords() {
+        return new ArrayList<Word>(getShuffledWords());
     }
 
     private LinkedList<Word> getShuffledWords() {

@@ -20,6 +20,7 @@ import tr.com.aliok.jsExperiments.model.Word;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import java.util.List;
 
 /**
  * @author Ali Ok (aliok@apache.org)
@@ -29,4 +30,8 @@ public interface WordService {
     @GET
     @Path("/nextWord")
     public Word getNextWord();
+
+    @GET
+    @Path("/words")
+    public List<Word> getWords();
 }
