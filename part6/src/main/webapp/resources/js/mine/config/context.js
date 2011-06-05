@@ -20,11 +20,15 @@ if (artikelApp == undefined || artikelApp == null)
 
 artikelApp.Context = function(){
 
+    this.localStorageSupport = function(){
+        return Modernizr.localstorage;
+    };
+
     this.getNextWordServiceUrl = function(){
         // adding time in milliseconds for breaking the browser cache.
         // we can of course do it with modifying JQuery.getJson function's options,
         // but in that case we will lose the nice syntax of it and use JQuery.ajax instead
 
         return '/rest/mobileServices/wordService/nextWord?'+new Date().getTime();
-    }
+    };
 };
