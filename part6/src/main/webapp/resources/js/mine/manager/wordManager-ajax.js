@@ -30,10 +30,10 @@ artikelApp.WordAjaxManager = function(context){
        */
     var fetchNextWordCallback = function(data, callback) {
 
-        if(!data || !data['word'])
+        if(!data || !data['words'])
             callback(null);
 
-        var wordObject = data['word'];
+        var wordObject = data['words'];
 
         var word = wordObject['word'];
         var translation = wordObject['translation'];
@@ -59,10 +59,10 @@ artikelApp.WordAjaxManager = function(context){
        * @private
        */
     var fetchWordsCallback = function(data, callback) {
-        if(!data || !data['word'])
+        if(!data || !data['words'])
             callback(null);
 
-        callback(data['word']);
+        callback(data['words']);
     };
 
     this.getWords = function(callback){

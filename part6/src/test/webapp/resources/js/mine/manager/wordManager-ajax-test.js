@@ -48,7 +48,7 @@ WordAjaxManagerTest.prototype.testWordAjaxManagerShouldFetchNextWord = function(
         jc.expect("$.getJSON")
             .once()
             .mock(function(){
-                var data = {'word' : {'word' : 'new word', 'translation' : 'new translation', 'article' : 'new article'}};
+                var data = {'words' : {'word' : 'new word', 'translation' : 'new translation', 'article' : 'new article'}};
                 wordAjaxManager.fetchNextWordCallback(data, getNextWordCallback);
                 return new function(){
                         this.error = function(){};
@@ -112,7 +112,7 @@ WordAjaxManagerTest.prototype.testWordAjaxManagerShouldFetchWords = function() {
         jc.expect("$.getJSON")
             .once()
             .mock(function(){
-                wordAjaxManager.fetchWordsCallback({'word' : 'the data'}, getWordsCallback);
+                wordAjaxManager.fetchWordsCallback({'words' : 'the data'}, getWordsCallback);
                 return new function(){
                     this.error = function(){};
                 };
