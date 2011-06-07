@@ -18,10 +18,7 @@ var artikelApp;
 if (artikelApp == undefined || artikelApp == null)
     artikelApp = {};
 
-/**
- * @param appView {artikelApp.AppView}
- */
-artikelApp.AppController = function(appView, wordManager) {
+artikelApp.AppController = function(appView, wordService) {
 
     var instance = this;
 
@@ -107,7 +104,7 @@ artikelApp.AppController = function(appView, wordManager) {
             }
         };
 
-        wordManager.getNextWord(callback);
+        wordService.getNextWord(callback);
     };
 
 

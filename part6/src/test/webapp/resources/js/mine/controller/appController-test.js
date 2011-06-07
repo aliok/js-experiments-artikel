@@ -19,7 +19,7 @@ var jc;
 var appController;
 
 var appView;
-var wordManager
+var wordService;
 
 AppControllerTest = TestCase("AppControllerTest");
 
@@ -43,9 +43,9 @@ AppControllerTest.prototype.setUp = function() {
                 'setArticleColor',
                 'alert']);
 
-    wordManager = jc.create('wordManager', ['getNextWord']);
+    wordService = jc.create('wordService', ['getNextWord']);
 
-    appController = new artikelApp.AppController(appView, wordManager);
+    appController = new artikelApp.AppController(appView, wordService);
     appController._makeAllPublicForTests();
 };
 
@@ -68,7 +68,7 @@ AppControllerTest.prototype.testInitShouldRegisterButtonHandlersOnViewAndInitial
         jc.expect("appView.setScore").once().withArguments(0);
 
         jc.expect("appView.showLoadingDialog").once();
-        jc.expect("wordManager.getNextWord").once();
+        jc.expect("wordService.getNextWord").once();
 
         appController.init();
     });
@@ -116,7 +116,7 @@ AppControllerTest.prototype.testNextWordShouldBeFetchedAndSet = function() {
 
         jc.expect("appView.showLoadingDialog").once();
 
-        jc.expect("wordManager.getNextWord")
+        jc.expect("wordService.getNextWord")
             .once()
             .mock(function(callback) {
                 callback('new word', 'new translation', 'new article');
@@ -145,7 +145,7 @@ AppControllerTest.prototype.testConnectionErrorShouldBeHandledWhileFetchingNewWo
 
         jc.expect("appView.showLoadingDialog").once();
 
-        jc.expect("wordManager.getNextWord")
+        jc.expect("wordService.getNextWord")
             .once()
             .mock(function(callback) {
                 callback(null, null, null);
