@@ -24,7 +24,10 @@ artikelApp.ApplicationBeanFactory = function(){
 
     instance.context = null;
 
-    instance.wordManager = null;
+    instance.wordAjaxManager = null;
+    instance.wordLocalStorageManager = null;
+
+    instance.wordService = null;
 
     this.getContext = function(){
         if(!instance.context){
@@ -35,12 +38,28 @@ artikelApp.ApplicationBeanFactory = function(){
     };
 
 
-    this.getWordManager = function(){
-        if(!this.wordManager){
-            this.wordManager = new artikelApp.WordManager(instance.getContext());
+    this.getWordAjaxManager = function(){
+        if(!this.wordAjaxManager){
+            this.wordAjaxManager = new artikelApp.WordAjaxManager(instance.getContext());
         }
 
-        return instance.wordManager;
+        return instance.wordAjaxManager;
+    };
+
+    this.getWordLocalStorageManager = function(){
+        if(!this.wordLocalStorageManager){
+            this.wordLocalStorageManager = new artikelApp.WordLocalStorageManager();
+        }
+
+        return instance.wordLocalStorageManager;
+    };
+
+    this.getWordService = function(){
+        if(!this.wordService){
+            this.wordService = new artikelApp.WordService(instance.getContext(), instance.getWordAjaxManager(), instance.getWordLocalStorageManager());
+        }
+
+        return instance.wordService;
     };
 
 };
