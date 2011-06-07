@@ -100,7 +100,11 @@ artikelApp.AppController = function(appView, wordService) {
 
             } else {      //then error occurred
                 appView.hideLoadingDialog();
-                appView.alert("Unable to connect server, please check your internet connection.");
+                if(Modernizr.localstorage)
+                    appView.alert("You answered all the words, so internet connection is required to get new words." +
+                            "Unable to connect server, please check your internet connection.");
+                else
+                    appView.alert("Unable to connect server, please check your internet connection.");
             }
         };
 
