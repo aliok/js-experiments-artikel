@@ -18,49 +18,12 @@ var artikelApp;
 if (artikelApp == undefined || artikelApp == null)
     artikelApp = {};
 
-/**
- * @param context {artikelApp.Context}
- */
 artikelApp.WordManager = function(context){
 
-    var instance = this;
-
-    /**
-       * @private
-       */
-    var fetchNextWordCallback = function(data, callback) {
-
-        if(!data || !data['word'])
-            callback(null);
-
-        var wordObject = data['word'];
-
-        var word = wordObject['word'];
-        var translation = wordObject['translation'];
-        var article = wordObject['article'];
-
-        callback(word, translation, article);
-
-    };
-
-    /**
-       * @public
-       */
-    this.getNextWord = function(callback){
-        $.getJSON(context.getNextWordServiceUrl(), function(data){
-            fetchNextWordCallback(data, callback);
-        })
-        .error(function() {
-            callback(null);
-        });
-    };
-
-    /**
-       * Should only be used for tests
-       * @public
-       */
-    this._makeAllPublicForTests = function(){
-        instance.fetchNextWordCallback = fetchNextWordCallback;
-    };
-
 };
+
+artikelApp.WordManager.prototype = {
+    context : null
+};
+
+artikelApp.WordManager.prototype.getNextWord = NOT_IMPLEMENTED;
