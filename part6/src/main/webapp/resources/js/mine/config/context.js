@@ -31,4 +31,14 @@ artikelApp.Context = function(){
 
         return '/rest/mobileServices/wordService/nextWord?'+new Date().getTime();
     };
+
+    this.getWordsServiceUrl = function(){
+        // adding time in milliseconds for breaking the browser cache.
+        // we can of course do it with modifying JQuery.getJson function's options,
+        // but in that case we will lose the nice syntax of it and use JQuery.ajax instead
+
+        return '/rest/mobileServices/wordService/words?'+new Date().getTime();
+    };
+
+
 };
