@@ -117,6 +117,10 @@ artikelApp.AppController = function(appView, wordService) {
        */
     this.start = function(){
         appView.registerPageCreateHandler(init);
+        wordService.initializeDatabase(function(constructed){
+            if(!constructed)
+                alert('Unable to construct the database.');
+        });
     };
 
     /**

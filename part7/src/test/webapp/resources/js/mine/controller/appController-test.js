@@ -43,7 +43,7 @@ AppControllerTest.prototype.setUp = function() {
                 'setArticleColor',
                 'alert']);
 
-    wordService = jc.create('wordService', ['getNextWord']);
+    wordService = jc.create('wordService', ['getNextWord', 'initializeDatabase']);
 
     appController = new artikelApp.AppController(appView, wordService);
     appController._makeAllPublicForTests();
@@ -54,6 +54,10 @@ AppControllerTest.prototype.testStartShouldRegisterPageCreateHandlerOnView = fun
         jc.expect("appView.registerPageCreateHandler")
                 .once()
                 .withArguments(appController.init);
+
+        jc.expect("wordService.initializeDatabase")
+                .once();
+
         appController.start();
     });
 };

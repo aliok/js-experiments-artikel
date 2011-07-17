@@ -18,35 +18,68 @@ var artikelApp;
 if (artikelApp == undefined || artikelApp == null)
     artikelApp = {};
 
-artikelApp.WordService = function(context, ajaxManager, localStorageManager){
+artikelApp.WordService = function(context, ajaxManager, databaseManager){
 
     var instance = this;
+
+    this.initializeDatabase = function(callback){
+        databaseManager.initializeDatabase(callback);
+    };
 
     var getWordsAjaxCallback = function(words, callback){
         if(words==null){
             callback(null);
         }
         else{
-            localStorageManager.constructWordStorage(words);
-            localStorageManager.getNextWord(callback);
+            constructWordStorage(words, function(word, translation, article){
+                databaseManager.setWordAsShown(word, function(){
+                    callback(word, translation, article);
+                });
+            });
         }
     };
 
 
     this.getNextWord = function(callback){
-        if(context.localStorageSupport()){
-            if(localStorageManager.isWordStorageRefreshNecessary()){
-                ajaxManager.getWords(function(data){
-                    getWordsAjaxCallback(data,callback);
-                });
-            }
-            else{
-                localStorageManager.getNextWord(callback);
-            }
+        if(context.websqlStorageSupport()){
+            databaseManager.checkIfWordStorageRefreshNecessary(function(refreshNecessary){
+                if(refreshNecessary){
+                    ajaxManager.getWords(function(data){
+                        getWordsAjaxCallback(data,callback);
+                    });
+                }
+                else{
+                    databaseManager.getNextWord(function(word, translation, article){
+                        databaseManager.setWordAsShown(word, function(){
+                            callback(word, translation, article);
+                        });
+                    });
+                }
+            });
         }
         else{
             ajaxManager.getNextWord(callback);
         }
+    };
+
+    var constructWordStorage = function(words, firstWordCallback){
+        databaseManager.deleteAllWords(function(sqlError){
+            if(sqlError){
+                alert("Unable to delete all words for reconstructing the word storage");
+                return;
+            }
+
+            for(var i=0; i<words.length;  i++){
+                var word = words[i]['word'];
+                var translation = words[i]['translation'];
+                var article = words[i]['article'];
+
+                if(i==0)
+                    databaseManager.addNewWordEntry(word, translation, article, firstWordCallback);
+                else
+                    databaseManager.addNewWordEntry(word, translation, article);
+            }
+        });
     };
 
     /**
@@ -55,5 +88,6 @@ artikelApp.WordService = function(context, ajaxManager, localStorageManager){
        */
     this._makeAllPublicForTests = function(){
         instance.getWordsAjaxCallback = getWordsAjaxCallback;
+        instance.constructWordStorage = constructWordStorage;
     };
 };

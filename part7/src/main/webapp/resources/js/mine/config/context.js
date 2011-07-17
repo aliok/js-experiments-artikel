@@ -20,8 +20,8 @@ if (artikelApp == undefined || artikelApp == null)
 
 artikelApp.Context = function(){
 
-    this.localStorageSupport = function(){
-        return Modernizr.localstorage;
+    this.websqlStorageSupport = function(){
+        return Modernizr.websqldatabase;
     };
 
     this.getNextWordServiceUrl = function(){

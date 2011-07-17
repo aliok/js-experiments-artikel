@@ -20,58 +20,38 @@ var wordService;
 
 var context;
 var ajaxManager;
-var localStorageManager;
+var databaseManager;
 
 WordServiceTest= TestCase("WordServiceTest");
 
 WordServiceTest.prototype.setUp = function() {
     jc = createJackContext();
 
-    context = jc.create('context', ['localStorageSupport']);
+    context = jc.create('context', ['websqlStorageSupport']);
     ajaxManager = jc.create('ajaxManager', ['getWords', 'getNextWord']);
-    localStorageManager = jc.create('localStorageManager', ['isWordStorageRefreshNecessary', 'getNextWord', 'constructWordStorage']);
+    databaseManager = jc.create('databaseManager', ['initializeDatabase', 'checkIfWordStorageRefreshNecessary', 'getNextWord', 'addNewWordEntry', 'setWordAsShown', 'deleteAllWords']);
 
-    wordService = new artikelApp.WordService(context, ajaxManager, localStorageManager);
+    wordService = new artikelApp.WordService(context, ajaxManager, databaseManager);
 
     wordService._makeAllPublicForTests();
 };
 
-WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenLocalStorageIsSupportedAndRefreshIsNotNecessary = function() {
+WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenWebSqlIsSupportedAndRefreshIsNotNecessary = function() {
     jc(function() {
 
         var callback = function(){};
 
-        jc.expect("context.localStorageSupport")
+        jc.expect("context.websqlStorageSupport")
             .once()
             .returnValue(true);
 
-        jc.expect("localStorageManager.isWordStorageRefreshNecessary")
-            .once()
-            .returnValue(false);
+        jc.expect("databaseManager.checkIfWordStorageRefreshNecessary")
+            .mock(function(){arguments[0](false);});
 
-        jc.expect("localStorageManager.getNextWord")
-            .once()
-            .withArguments(callback);
+        jc.expect("databaseManager.getNextWord")
+            .mock(function(){arguments[0]("theWord", "theTranslation", "theArticle");});
 
-        wordService.getNextWord(callback);
-
-    });
-};
-
-WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenLocalStorageIsSupportedAndRefreshIsNecessary = function() {
-    jc(function() {
-
-        var callback = function(){};
-
-        jc.expect("context.localStorageSupport")
-            .once()
-            .returnValue(true);
-
-        jc.expect("localStorageManager.isWordStorageRefreshNecessary")
-            .once()
-            .returnValue(true);
-
-        jc.expect("ajaxManager.getWords")
+        jc.expect("databaseManager.setWordAsShown")
             .once();
 
         wordService.getNextWord(callback);
@@ -79,58 +59,45 @@ WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenLocalStorageIsSupp
     });
 };
 
-WordServiceTest.prototype.testWordServiceShouldSetFetchedWordsOnLocalStorage = function() {
-    jc(function() {
-
-        var words = {'data' : 'the words'};
-
-        var callback = function(){};
-
-        jc.expect("localStorageManager.constructWordStorage")
-            .once()
-            .withArguments(words);
-
-        jc.expect("localStorageManager.getNextWord")
-            .once()
-            .withArguments(callback);
-
-        wordService.getWordsAjaxCallback(words, callback);
-
-    });
-};
-
-WordServiceTest.prototype.testWordServiceShouldHandleConnectionErrorsDuringFetchingWords = function() {
-    jc(function() {
-
-        var passedWords = new Object();
-
-        var callback = function(arg){
-            passedWords = arg;
-        };
-
-        jc.expect("localStorageManager.constructWordStorage")
-            .never();
-
-        jc.expect("localStorageManager.getNextWord")
-            .never();
-
-        wordService.getWordsAjaxCallback(null, callback);
-
-        assertNull('The passed words to callback must be null', passedWords);
-    });
-};
-
-WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenLocalStorageIsNotSupported = function() {
+WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenWebSqlIsSupportedAndRefreshIsNecessary = function() {
     jc(function() {
 
         var callback = function(){};
 
-        jc.expect("context.localStorageSupport")
+        var data = [
+            {'word' : "wordA", 'translation' : 'translationA', 'article' : 'articleA'},
+            {'word' : "wordB", 'translation' : 'translationB', 'article' : 'articleB'}
+        ];
+
+        jc.expect("context.websqlStorageSupport")
+            .once()
+            .returnValue(true);
+
+        jc.expect("databaseManager.checkIfWordStorageRefreshNecessary")
+            .mock(function(){arguments[0](true);});
+
+        jc.expect("ajaxManager.getWords")
+            .mock(function(){arguments[0](data);});
+
+        jc.expect("databaseManager.deleteAllWords")
+            .mock(function(){arguments[0]();});
+
+        jc.expect("databaseManager.addNewWordEntry")
+            .exactly("2 times");
+
+        wordService.getNextWord(callback);
+
+    });
+};
+
+WordServiceTest.prototype.testWordServiceShouldGetNextWordWhenWebSqlIsNotSupported = function() {
+    jc(function() {
+
+        var callback = function(){};
+
+        jc.expect("context.websqlStorageSupport")
             .once()
             .returnValue(false);
-
-        jc.expect("localStorageManager.isWordStorageRefreshNecessary")
-            .never();
 
         jc.expect("ajaxManager.getNextWord")
             .once()

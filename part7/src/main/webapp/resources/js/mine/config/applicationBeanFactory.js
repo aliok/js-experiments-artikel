@@ -25,7 +25,7 @@ artikelApp.ApplicationBeanFactory = function(){
     instance.context = null;
 
     instance.wordAjaxManager = null;
-    instance.wordLocalStorageManager = null;
+    instance.wordDatabaseManagerManager = null;
 
     instance.wordService = null;
 
@@ -46,17 +46,17 @@ artikelApp.ApplicationBeanFactory = function(){
         return instance.wordAjaxManager;
     };
 
-    this.getWordLocalStorageManager = function(){
-        if(!this.wordLocalStorageManager){
-            this.wordLocalStorageManager = new artikelApp.WordLocalStorageManager();
+    this.geWordDatabaseManagerManager = function(){
+        if(!this.wordDatabaseManagerManager){
+            this.wordDatabaseManagerManager = new artikelApp.WordDatabaseManager();
         }
 
-        return instance.wordLocalStorageManager;
+        return instance.wordDatabaseManagerManager;
     };
 
     this.getWordService = function(){
         if(!this.wordService){
-            this.wordService = new artikelApp.WordService(instance.getContext(), instance.getWordAjaxManager(), instance.getWordLocalStorageManager());
+            this.wordService = new artikelApp.WordService(instance.getContext(), instance.getWordAjaxManager(), instance.geWordDatabaseManagerManager());
         }
 
         return instance.wordService;
