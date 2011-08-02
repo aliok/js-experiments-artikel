@@ -39,5 +39,14 @@
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>ManifestFilter</filter-name>
+        <filter-class>tr.com.aliok.jsExperiments.filter.ManifestFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ManifestFilter</filter-name>
+        <url-pattern>*.manifest</url-pattern>
+    </filter-mapping>
 
 </web-app>

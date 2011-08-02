@@ -1,0 +1,50 @@
+CACHE MANIFEST
+
+# version 8.0  build 001
+
+CACHE:
+
+# Pages
+
+/index.html
+
+# JavaScript
+
+/resources/js/mine/config/applicationBeanFactory.js
+/resources/js/mine/config/context.js
+
+/resources/js/mine/controller/appController.js
+
+/resources/js/mine/manager/wordManager-ajax.js
+/resources/js/mine/manager/wordManager-database.js
+/resources/js/mine/manager/wordManager.js
+
+/resources/js/mine/service/wordService.js
+
+/resources/js/mine/util/util.js
+
+/resources/js/mine/view/appView.js
+
+/resources/js/thirdparty/jquery-1.5.js
+/resources/js/thirdparty/jquery.mobile-1.0a4.1.js
+/resources/js/thirdparty/modernizr-1.7.min.js
+
+# Images
+
+## jqmobile images
+/resources/css/thirdparty/images/ajax-loader.png
+/resources/css/thirdparty/images/icon-search-black.png
+/resources/css/thirdparty/images/icons-18-black.png
+/resources/css/thirdparty/images/icons-18-white.png
+/resources/css/thirdparty/images/icons-36-black.png
+/resources/css/thirdparty/images/icons-36-white.png
+
+## app images
+/resources/img/iosHomeScreenIcon.png
+/resources/img/iosStartupImage.png
+
+# Css
+/resources/css/thirdparty/jquery.mobile-1.0a4.1.css
+
+NETWORK:
+/rest/mobileServices/wordService/words
